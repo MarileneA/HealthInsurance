@@ -1,11 +1,18 @@
-# - ENTENDIMENTO DE NEGÓCIOS
+
+![HI](https://user-images.githubusercontent.com/87071331/215324461-21d17968-acad-4988-8ec7-8e2e4d759abb.jpg)
 
 ## 1. Sobre a  Insurance All
 
 A Insurance All é uma seguradora que vende seguros de saúde para seus clientes. O modelo de negócios de seguros funciona dessa maneira.
 
-A seguradora exige um pagamento (chamado "prêmio") do cliente para garantir compensações em caso de doenças, tratamentos de saúde e quaisquer outras condições especificadas no contrato.
+A seguradora exige um pagamento do cliente para garantir compensações em caso de doenças, tratamentos de saúde e quaisquer outras condições especificadas no contrato.
 
+
+<p align='center'>
+   
+</p>
+
+## ENTENDIMENTO DE NEGÓCIOS
 ## 1.1 Problema de negócio:
 
 A Insurance All é uma seguradora de saúde e sua equipe de produtos está analisando a possibilidade de oferecer um novo produto, seguro de automóvel, para seus clientes de planos de saúde.
@@ -16,55 +23,119 @@ No ano passado, a Insurance All entrevistou cerca de 380.000 clientes sobre seus
 
 A equipe de produto escolheu 127.000 novos clientes que não responderam a última pesquisa para a nova oferta de produtos de seguro automóvel. A equipe de produtos fará essas ofertas por telefone, mas poderá realizar apenas 20.000 ligações telefônicas na campanha.
 
-## 1.2 Objetivo deste projeto:
+### 1.2 Objetivo
+Construir um ranking por ordem de interesse (propensão de compra) dos potenciais clientes.
 
-Desenvolver um modelo que preveja se um cliente estaria (ou não estaria) interessado no produto de seguro automóvel.
-    
-Com esse modelo, a equipe de produtos espera priorizar os clientes que teriam interesse no novo produto e, assim, otimizar as campanhas de vendas fazendo ligações apenas para os clientes interessados.
+As seguintes questões de negócio devem ser respondidas ao gestor do call center:
 
-## 1.3 Como produto final será feito um relatório com as seguintes análises:
-    
-1. Principais insights sobre os recursos mais relevantes dos clientes interessados em seguros de automóveis
-    
-2. Fazendo 20.000 ligações telefônicas, qual o percentual de clientes interessados com os quais a equipe de vendas entrará em contato?
-    
-3. Se a equipe de vendas expandir sua capacidade para fazer 40.000 ligações telefônicas, qual é o percentual de clientes interessados ​​com os quais a equipe de vendas entrará em contato?
-    
-4. Quantas ligações a equipe de vendas precisa fazer para contatar 80% dos clientes interessados em seguros de automóveis?
-
-## REFERENCIAS:
-    
-https://www.kaggle.com/anmolkumar/health-insurance-cross-sell-prediction/metadata
-
-https://sejaumdatascientist.com/como-usar-data-science-para-fazer-a-empresa-vender-mais/
+- Quais são os principais insights sobre os atributos mais relevantes de clientes interessados em seguro veicular?
+- Qual a porcentagem de clientes interessados em seguro veicular, o call center conseguirá contatar fazendo 20 mil ligações?
+- Se a capacidade do call center aumentar para 40 mil ligações, qual a porcentagem de clientes interessados em adquirir um seguro veicular o call center conseguirá contatar?
+- Quantas ligações o call center precisa fazer para contatar 80% dos clientes interessados em adquirir um seguro veicular?
 
 
-# - PREMISSAS DE NEGÓCIOS
+## 2. Premissas de negócio
+- O time de vendas já utiliza o Google Sheets como ferramenta corporativa. É preciso que o ranking de propensão de compra seja incorporado nele.
 
-De acordo com as informações do banco de dados, **Annual_Premium** refere-se ao valor do seguro saúde pago e não à oferta do seguro automóvel.
+## 3. Planejamento da solução
+### 3.1. Produto final
+O que será entregue efetivamente?
+- Uma funcionalidade dentro da ferramenta Google Sheets, que ordena os clientes (ou quaisquer novos clientes inclusos na planilha) por propensão de compra.
 
-Com base em uma pesquisa nas referências abaixo, o **custo médio do seguro de carro** foi assumido como $ 1.000 por ano. Como a maioria das referências abaixo das estimativas são mais altas, as estimativas de receita para este projeto são um tanto pessimistas.
+### 3.2. Ferramentas
+Quais ferramentas serão usadas no processo?
+- Python 3.8.12;
+- Jupyter Notebook;
+- Git, Github e Gitlab;
+- Coggle Mindmaps;
+- SweetViz;
+- Heroku Cloud;
+- Algoritmos de Regressão e Classificação;
+- Pacotes de Machine Learning sklearn e xgboost;
+- Técnicas de Seleção de Atributos;
+- Flask e Python API's;
+- Google Sheets Apps Script.
 
-Presumiu-se que **10%** dos clientes interessados comprariam o seguro automóvel após serem contata
+### 3.3 Processo
+#### 3.3.1 Estratégia de solução
+Com base no objetivo do projeto, trata-se portanto de um projeto de Learning to Rank (LTR).
+
+Minha estratégia para resolver esse desafio, baseado na metodologia CRISP-DS, é detalhada pelo plano abaixo:
+
+**Step 01. Data Description:**
+- Coletar dados em um banco de dados na AWS Cloud.
+- Compreender o significado de cada atributo dos interessados.
+- Renomear colunas, compreender dimensões e tipos dos dados.
+- Identificar e tratar dados nulos.
+- Analisar atributos através de estatística descritiva.
+- Separar 20% dos dados para teste (aleatoriamente, mas estratificados pela variável resposta).
+
+**Step 02. Feature Engineering:**
+- Criar mindmap de hipóteses de negócio.
+- Realizar a feature engeneering, criando as features necessárias para validação das hipóteses.
+
+**Step 03. Data Filtering:**
+- Filtrar registros e atributos de acordo com restrições de negócio.
+
+**Step 04. Exploratory Data Analysis:**
+- Realizar uma análise univariada com uso do SweetViz, avaliando detalhes de cada atributo.
+- Realizar uma análise bivariada, validando as hipóteses criadas e gerando insights de negócio.
+- Criar tabela de resultados das hipóteses, e relevância estimada dos atributos para o aprendizado dos modelos.
+
+**Step 05. Data Preparation:**
+- Padronizar atributos numéricos com distribuição normal.
+- Reescalar atributos numéricos com distribuição não normal.
+- Codificar atributos categóricos em atributos numéricos.
+- Aplicas as transformações acima aos dados de teste.
+
+**Step 06. Feature Selection:**
+- Separar dados de treino e validação.
+- Rodar algoritmo para obter sugestão de atributos relevantes.
+- Analisar o resultado em conjunto com os atributos relevantes estimado na EDA.
+- Selecionar apenas os melhores atributos para treinar os modelos de machine learning.  
+
+**Step 07. Machine Learning Modelling:**
+- Rodar algoritmos: KNN classifier, Logistic regression, ExtraTrees classifier, e XGBboost classifier.
+- Plotar curva de ganho cumulativo e lift, e calcular precison@k/recall@k de cada modelo.
+- Criar tabela de performance comparando precison@k/recall@k de cada modelo.
 
 
-Referencias:
+Minha estratégia para resolver esse desafio, baseado na metodologia CRISP-DS, é detalhada pelo plano abaixo:
 
-https://www.bankrate.com/insurance/car/average-cost-of-car-insurance/
+**Step 01. Data Description:**
+- Coletar dados em um banco de dados na AWS Cloud.
+- Compreender o significado de cada atributo dos interessados.
+- Renomear colunas, compreender dimensões e tipos dos dados.
+- Identificar e tratar dados nulos.
+- Analisar atributos através de estatística descritiva.
+- Separar 20% dos dados para teste (aleatoriamente, mas estratificados pela variável resposta).
 
-https://www.policygenius.com/auto-insurance/learn/how-much-is-car-insurance/
+**Step 02. Feature Engineering:**
+- Criar mindmap de hipóteses de negócio.
+- Realizar a feature engeneering, criando as features necessárias para validação das hipóteses.
 
-https://www.businessinsider.com/personal-finance/average-cost-of-car-insurance
+**Step 03. Data Filtering:**
+- Filtrar registros e atributos de acordo com restrições de negócio.
 
-# Ferramentas Utilizadas
+**Step 04. Exploratory Data Analysis:**
+- Realizar uma análise univariada com uso do SweetViz, avaliando detalhes de cada atributo.
+- Realizar uma análise bivariada, validando as hipóteses criadas e gerando insights de negócio.
+- Criar tabela de resultados das hipóteses, e relevância estimada dos atributos para o aprendizado dos modelos.
 
- - Python;
- - SQL
- - Jupyter Notebook;
- - Git e Github;
- - Heroku Cloud;
- - Algoritmos de Classificação;
- - Pacotes de Machine Learning Sklearn e Scipy;
- - Técnicas de Seleção de Atributos e Redução de Dimensionalidade
- - Técnica de Hiperparametros e Fine Tuning
- - Flask e Python API's
+**Step 05. Data Preparation:**
+- Padronizar atributos numéricos com distribuição normal.
+- Reescalar atributos numéricos com distribuição não normal.
+- Codificar atributos categóricos em atributos numéricos.
+- Aplicas as transformações acima aos dados de teste.
+
+**Step 06. Feature Selection:**
+- Separar dados de treino e validação.
+- Rodar algoritmo para obter sugestão de atributos relevantes.
+- Analisar o resultado em conjunto com os atributos relevantes estimado na EDA.
+- Selecionar apenas os melhores atributos para treinar os modelos de machine learning.  
+
+**Step 07. Machine Learning Modelling:**
+- Rodar algoritmos: KNN classifier, Logistic regression, ExtraTrees classifier, e XGBboost classifier.
+- Plotar curva de ganho cumulativo e lift, e calcular precison@k/recall@k de cada modelo.
+- Criar tabela de performance comparando precison@k/recall@k de cada modelo.
+
