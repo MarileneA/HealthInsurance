@@ -138,4 +138,26 @@ Minha estratégia para resolver esse desafio, baseado na metodologia CRISP-DS, �
 - Rodar algoritmos: KNN classifier, Logistic regression, Randon Forest Classifier, e XGBboost classifier, LightGBM Classifier.
 - Plotar curva de ganho cumulativo e lift, e calcular precison@k/recall@k de cada modelo.
 - Criar tabela de performance comparando precison@k/recall@k de cada modelo.
+- 
+**Step 08. Hyperparameter Fine Tunning:**
+- Fazer um ajuste fino de hiperparâmetros em cada modelo, identificando o melhor conjunto de parâmetros para maximizar suas capacidades de aprendizagem.
+- Aplicar validação cruzada em cada modelo, reduzindo o viés de seleção (teoria da amostragem), por utilizar várias amostras diferentes dos dados.
+- Plotar curvas de ganho cumulativo e lift, comparando os modelos.
+- Calcular precison@k/recall@k dos 4 modelos, e selecionar o de melhor performance.
+- Submeter esse modelo aos dados de teste, e plotar suas curvas de ganho cumulativo e lift.
+- Comparar precison@k/recall@k em treino vs. teste, avaliando a capacidade de generalização do modelo (aprendizado com dados inéditos).  
+
+**Step 09. Convert Model Performance to Business Values:**
+- Responder as questões de negócio do gestor ao call center.
+- Comparar resultados da lista aleatória com a lista ordenada por propensão de compra.
+- Traduzir a performance do modelo em resultados financeiros para a Insurance All.
+
+**Step 10. Deploy Modelo to Production:**
+- Criar as classes para publicação em produção.
+- Testar as classes localmente.
+- Publicar modelo no Heroku Cloud.
+- Criar App Script em Google Sheets para consultar o modelo em produção.
+- Implementar botão que consulta a propensão de compra dos clientes no Google Sheets, e testar a solução.
+
+
 
